@@ -1,14 +1,14 @@
-module.exports = {
+const path = require('path')
+
+module.exports = () => ({
   entry: './index.js',
   output: {
-    filename: '[name].bundle.js',
-    path: './builds',
-    library: 'plugin'
+    filename: 'main.js',
+    path: path.resolve('./builds'),
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel'
-    }]
+    rules: [
+      { test: /\.js$/, loader: 'babel-loader' }
+    ]
   }
-}
+});
