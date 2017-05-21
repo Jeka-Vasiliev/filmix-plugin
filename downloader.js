@@ -1,6 +1,6 @@
 // $.post('/engine/ajax/sphinx_search.php'
 
-fetch('/engine/ajax/sphinx_search.php', { method: 'POST', body: JSON.stringify({ ganre: [2] }) })
+fetch('/engine/ajax/sphinx_search.php', { method: 'POST', body: JSON.stringify({ search_start: 1, ganre: [2] }) })
     .then(result => result.text())
     .then(html => {
       const films = []
