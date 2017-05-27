@@ -12,8 +12,10 @@ export default function gotoRandomFilm (genreIds) {
       return getUrlsFromPageForGenres(randomPage, genreIds)
     })
     .then(urls => {
-      const randomUrlIndex = randomInt(0, urls.length)
+      const randomUrlIndex = randomInt(0, urls.length - 1)
+
       chrome.runtime.sendMessage(`goto: ${urls[randomUrlIndex]}`)
+
       window.location.assign(urls[randomUrlIndex])
     })
 }
