@@ -1,1 +1,1 @@
-export const HORROR = 2;
+export const HORROR = 2

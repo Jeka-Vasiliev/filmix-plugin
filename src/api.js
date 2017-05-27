@@ -2,36 +2,31 @@ import { getPagesCount, parseUrls } from './filmixResponseParsers'
 
 export const searchUrl = '/engine/ajax/sphinx_search.php'
 
-export async function getPagesCountForGenres (genreIds) {
+/**
+ * Возвращает html с результатами поиска
+ * @param {number} pageNumber Номер страницы
+ * @param {number[]} genreIds Id жанров
+ */
+export function getFilmixSearchHtml (pageNumber, genreIds) {
   const body = new URLSearchParams()
-  body.append('search_start', 0)
+  body.append('search_start', pageNumber)
   body.append('ganre[]', genreIds)
-
-  const result = await fetch(searchUrl, {
+  const init = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
     body
-  })
+  }
 
-  const html = await result.text()
-  return getPagesCount(html)
+  return fetch(searchUrl, init)
+    .then(result => result.text())
 }
 
-export async function getUrlsFromPageForGenres (randomPage, genreIds) {
-  const body = new URLSearchParams()
-  body.append('search_start', 0)
-  body.append('ganre[]', genreIds)
+export function getPagesCountForGenres (genreIds) {
+  return getFilmixSearchHtml(0, genreIds)
+    .then(html => getPagesCount(html))
+}
 
-  const result = await fetch(searchUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-    },
-    body
-  })
-
-  const html = await result.text()
-  return parseUrls(html)
+export function getUrlsFromPageForGenres (randomPage, genreIds) {
+  return getFilmixSearchHtml(randomPage, genreIds)
+    .then(html => parseUrls(html))
 }

@@ -5,7 +5,7 @@ chrome.pageAction.onClicked.addListener((tab) => {
 const enableOnFilmixRule = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: { hostEquals: 'filmix.me', schemes: ['http', 'https'] },
+      pageUrl: { hostEquals: 'filmix.me', schemes: ['http', 'https'] }
     })
   ],
   actions: [new chrome.declarativeContent.ShowPageAction()]
@@ -13,6 +13,6 @@ const enableOnFilmixRule = {
 
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
-    chrome.declarativeContent.onPageChanged.addRules([enableOnFilmixRule]);
-  });
-});
+    chrome.declarativeContent.onPageChanged.addRules([enableOnFilmixRule])
+  })
+})

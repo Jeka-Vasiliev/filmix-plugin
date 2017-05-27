@@ -8,6 +8,10 @@ gulp.task('build', (cb) => {
   runSequence('clean', ['copy-statics', 'webpack-build'], cb)
 })
 
+gulp.task('build-production', (cb) => {
+  runSequence('clean', ['copy-statics', 'webpack-build-production'], cb)
+})
+
 gulp.task('webpack-build-production', (cb) => {
   const compiler = webpack(webpackConfig('production'))
   compiler.run((err, stats) => {

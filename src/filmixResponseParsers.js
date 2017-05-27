@@ -1,22 +1,21 @@
 /**
  * Возвращает общее количество страниц из html ответа
- * @param {string} html 
+ * @param {string} html
  * @returns number
  */
-export function getPagesCount(html) {
-  const films = []
+export function getPagesCount (html) {
   const rootNode = document.createElement('div')
   rootNode.innerHTML = html
-  const [navigationBar] = rootNode.getElementsByClassName('navigation');
-  const clickableSpans = navigationBar.getElementsByClassName('click');
+  const [navigationBar] = rootNode.getElementsByClassName('navigation')
+  const clickableSpans = navigationBar.getElementsByClassName('click')
   // предположение, что последняя ссылка ведет на последнюю страницу
-  const lastSpan = clickableSpans[clickableSpans.length - 1];
-  return Number(lastSpan.innerHTML);
+  const lastSpan = clickableSpans[clickableSpans.length - 1]
+  return Number(lastSpan.innerHTML)
 }
 
 /**
  * Возвращает массив url из html ответа
- * @param {string} html 
+ * @param {string} html
  */
 export function parseUrls (html) {
   const films = []

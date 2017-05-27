@@ -5,10 +5,15 @@ import { randomInt } from './utils'
  * Меняет текущую страницу на случайный фильм из списка жанров
  * @param {number[]} genreIds Список id жанров
  */
-export default async function gotoRandomFilm(genreIds) {
-  const pagesCount = await getPagesCountForGenres(genreIds);
-  const randomPage = randomInt(0, pagesCount);
-  const urls = await getUrlsFromPageForGenres(randomPage, genreIds);
-  const randomUrlIndex = randomInt(0, urls.length);
-  window.location.assign(urls[randomUrlIndex]);
+export default function gotoRandomFilm (genreIds) {
+  getPagesCountForGenres(genreIds)
+    .then(pagesCount => {
+      const randomPage = randomInt(0, pagesCount)
+      return getUrlsFromPageForGenres(randomPage, genreIds)
+    })
+    .then(urls => {
+      const randomUrlIndex = randomInt(0, urls.length)
+      // chrome.runtime.sendMessage(`goto: ${urls[randomUrlIndex]}`)
+      window.location.assign(urls[randomUrlIndex])
+    })
 }
