@@ -13,7 +13,7 @@ export default function gotoRandomFilm (genreIds) {
     })
     .then(urls => {
       const randomUrlIndex = randomInt(0, urls.length)
-      // chrome.runtime.sendMessage(`goto: ${urls[randomUrlIndex]}`)
+      chrome.runtime.sendMessage(`goto: ${urls[randomUrlIndex]}`)
       window.location.assign(urls[randomUrlIndex])
     })
 }

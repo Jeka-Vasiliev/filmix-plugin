@@ -2,6 +2,10 @@ chrome.pageAction.onClicked.addListener((tab) => {
   chrome.tabs.executeScript(tab.id, { file: 'main.js' })
 })
 
+chrome.runtime.onMessage.addListener((message) => {
+  console.log(message)
+})
+
 const enableOnFilmixRule = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
