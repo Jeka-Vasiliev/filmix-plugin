@@ -13,9 +13,10 @@
   },
   "manifest_version": 2,
   "permissions": [
-    "https://*/*",
-    "http://*/*",
+    "https://filmix.me/*",
+    "http://filmix.me/*",
     "declarativeContent",
-    "tabs"
+    "tabs",
+    "contextMenus"
   ]
 }
