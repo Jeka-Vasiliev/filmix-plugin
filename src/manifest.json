@@ -1,0 +1,21 @@
+{
+  "name": "Filmix random worshipper",
+  "description": "",
+  "version": "0.1",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "page_action": {
+    "default_title": "Worship!"
+  },
+  "manifest_version": 2,
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "declarativeContent",
+    "tabs"
+  ]
+}

@@ -1,9 +1,0 @@
-{
-  "name": "Context Menus Sample",
-  "description": "Shows some of the features of the Context Menus API",
-  "version": "0.1",
-  "browser_action": {
-    "default_popup": "popup.html"
-  },
-  "manifest_version": 2
-}
