@@ -28,7 +28,10 @@ module.exports = (outerEnv) => {
   }
 
   if (env === prodEnv) {
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin())
+    config.plugins.push(new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }))
   }
 
   return config
