@@ -8,15 +8,13 @@ module.exports = (outerEnv) => {
   const env = outerEnv || devEnv
 
   const config = {
-    entry: path.resolve('./src/index.js'),
-    output: {
-      filename: 'main.js',
-      path: path.resolve('./dist')
+    entry: {
+      background: path.resolve('./src/background'),
+      inject: path.resolve('./src/inject')
     },
-    module: {
-      rules: [
-        { test: /\.js$/, loader: 'babel-loader' }
-      ]
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve('./dist')
     },
     plugins: [
       new webpack.DefinePlugin({

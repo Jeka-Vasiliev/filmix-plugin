@@ -1,5 +1,5 @@
 chrome.pageAction.onClicked.addListener((tab) => {
-  chrome.tabs.executeScript(tab.id, { file: 'main.js' })
+  chrome.tabs.executeScript(tab.id, { file: 'inject.bundle.js' })
 })
 
 chrome.runtime.onMessage.addListener((message) => {

@@ -1,13 +1,13 @@
-import fs from 'fs';
-import { getPagesCount, parseUrls } from '../src/filmixResponseParsers'
+import fs from 'fs'
+import { getPagesCount, parseUrls } from '../src/inject/filmixResponseParsers'
 
 test('getPagesCount', () => {
-  const html = fs.readFileSync('tests/response-example.html', 'utf-8');
-  expect(getPagesCount(html)).toBe(4316);
-});
+  const html = fs.readFileSync('tests/response-example.html', 'utf-8')
+  expect(getPagesCount(html)).toBe(4316)
+})
 
 test('parseFilmixResponse', () => {
-  const html = fs.readFileSync('tests/response-example.html', 'utf-8');
+  const html = fs.readFileSync('tests/response-example.html', 'utf-8')
   const expected = [
     'https://filmix.me/mistika/5819-hrupkost-fragile-2005.html',
     'https://filmix.me/sport/45823-evro-2012-chempionat-evropy-match-ukraina-shveciya-2012.html',
@@ -24,7 +24,7 @@ test('parseFilmixResponse', () => {
     'https://filmix.me/tv/31127-mihail-zadornov-smeh-skvoz-hohot-2012.html',
     'https://filmix.me/sport/45723-evro-2012-chempionat-evropy-match-rossiya-chehiya-2012.html',
     'https://filmix.me/tv/25616-nerealnaya-istoriya-2011.html'
-  ];
+  ]
 
-  expect(parseUrls(html)).toEqual(expected);
-});
+  expect(parseUrls(html)).toEqual(expected)
+})

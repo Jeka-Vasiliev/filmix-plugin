@@ -40,7 +40,7 @@ gulp.task('clean', (cb) => {
 })
 
 gulp.task('copy-statics', (cb) => {
-  gulp.src(['src/manifest.json', 'src/background.js'])
+  gulp.src(['src/manifest.json'])
     .pipe(gulp.dest('dist'))
   cb()
 })
