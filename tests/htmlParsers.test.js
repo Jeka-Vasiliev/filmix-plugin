@@ -1,13 +1,13 @@
 import fs from 'fs'
 import { getPagesCount, parseUrls } from '../src/inject/filmixResponseParsers'
 
+const html = fs.readFileSync('tests/response-example.html.txt', 'utf-8')
+
 test('getPagesCount', () => {
-  const html = fs.readFileSync('tests/response-example.html', 'utf-8')
   expect(getPagesCount(html)).toBe(4316)
 })
 
 test('parseFilmixResponse', () => {
-  const html = fs.readFileSync('tests/response-example.html', 'utf-8')
   const expected = [
     'https://filmix.me/mistika/5819-hrupkost-fragile-2005.html',
     'https://filmix.me/sport/45823-evro-2012-chempionat-evropy-match-ukraina-shveciya-2012.html',
