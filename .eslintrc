@@ -1,7 +1,16 @@
 {
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
-        "webextensions": true
+        "webextensions": true,
+        "jest": true
     },
     "extends": "standard",
     "plugins": [
