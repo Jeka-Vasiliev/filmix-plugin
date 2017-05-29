@@ -10,11 +10,20 @@ module.exports = (outerEnv) => {
   const config = {
     entry: {
       background: path.resolve('./src/background'),
-      inject: path.resolve('./src/inject')
+      inject: path.resolve('./src/inject'),
+      options: path.resolve('./src/options')
     },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve('./dist')
+    },
+    module: {
+      rules: [
+        { test: /\.jsx?$/, loader: 'babel-loader' }
+      ]
+    },
+    resolve: {
+      extensions: ['.js', '.jsx']
     },
     plugins: [
       new webpack.DefinePlugin({

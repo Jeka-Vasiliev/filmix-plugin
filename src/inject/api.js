@@ -10,7 +10,10 @@ export const searchUrl = '/engine/ajax/sphinx_search.php'
 export function getFilmixSearchHtml (pageNumber, genreIds) {
   const body = new URLSearchParams()
   body.append('search_start', pageNumber)
-  body.append('ganre[]', genreIds)
+  for (let id in genreIds) {
+    body.append('ganre[]', genreIds[id])
+  }
+
   const init = {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },

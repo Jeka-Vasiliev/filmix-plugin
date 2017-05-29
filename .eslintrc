@@ -3,7 +3,8 @@
         "ecmaVersion": 2017,
         "sourceType": "module",
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
+            "experimentalObjectRestSpread": true,
+            "jsx": true
         }
     },
     "parser": "babel-eslint",
@@ -12,9 +13,26 @@
         "webextensions": true,
         "jest": true
     },
-    "extends": "standard",
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
     "plugins": [
         "standard",
-        "promise"
-    ]
+        "promise",
+        "react"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": 0,
+        "react/prop-types": 0,
+        "no-unused-vars": [
+            1,
+            {
+                "varsIgnorePattern": "^h$"
+            }
+        ]
+    },
+    "globals": {
+        "genres": true
+    }
 }
