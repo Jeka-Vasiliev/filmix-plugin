@@ -1,5 +1,11 @@
 chrome.pageAction.onClicked.addListener((tab) => {
-  chrome.tabs.executeScript(tab.id, { file: 'inject.bundle.js' })
+  chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }) => {
+    const checked = Object.keys(selected).filter(id => selected[id])
+    const code = `var genres = ${JSON.stringify(checked)};`
+    chrome.tabs.executeScript(tab.id, { code }, () => {
+      chrome.tabs.executeScript(tab.id, { file: 'inject.bundle.js' })
+    })
+  })
 })
 
 chrome.runtime.onMessage.addListener((message) => {
@@ -15,7 +21,7 @@ const enableOnFilmixRule = {
   actions: [new chrome.declarativeContent.ShowPageAction()]
 }
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(() => {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
     chrome.declarativeContent.onPageChanged.addRules([enableOnFilmixRule])
   })
