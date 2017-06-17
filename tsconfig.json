@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "removeComments": true
+        "removeComments": true,
+        "moduleResolution": "node"
     },
     "awesomeTypescriptLoaderOptions": {
         "useBabel": true,
         "useCache": true
     },
     "include": [
-      "src/**/*"
+      "src/**/*",
+      "typings/**/*"
     ]
 }
