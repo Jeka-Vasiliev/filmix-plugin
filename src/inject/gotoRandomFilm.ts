@@ -3,9 +3,9 @@ import { randomInt } from './utils'
 
 /**
  * Меняет текущую страницу на случайный фильм из списка жанров
- * @param {number[]} genreIds Список id жанров
+ * @param {string[]} genreIds Список id жанров
  */
-export default function gotoRandomFilm (genreIds) {
+export default function gotoRandomFilm (genreIds: string[]) {
   getPagesCountForGenres(genreIds)
     .then(pagesCount => {
       const randomPage = randomInt(0, pagesCount)

@@ -3,10 +3,10 @@
  * @param {string} html
  * @returns number
  */
-export function getPagesCount (html) {
+export function getPagesCount (html: string) {
   const rootNode = document.createElement('div')
   rootNode.innerHTML = html
-  const [navigationBar] = rootNode.getElementsByClassName('navigation')
+  const navigationBar= rootNode.getElementsByClassName('navigation').item(0)
   const clickableSpans = navigationBar.getElementsByClassName('click')
   // предположение, что последняя ссылка ведет на последнюю страницу
   const lastSpan = clickableSpans[clickableSpans.length - 1]
@@ -17,7 +17,7 @@ export function getPagesCount (html) {
  * Возвращает массив url из html ответа
  * @param {string} html
  */
-export function parseUrls (html) {
+export function parseUrls (html: string) {
   const films = []
   const rootNode = document.createElement('div')
   rootNode.innerHTML = html
