@@ -1,4 +1,4 @@
-import fs from 'fs'
+const fs = require('fs')
 import { getPagesCount, parseUrls } from '../src/inject/filmixResponseParsers'
 
 const html = fs.readFileSync('tests/response-example.html.txt', 'utf-8')
