@@ -1,33 +1,47 @@
 import { h, Component } from 'preact'
 import Genre from './Genre'
 
+type AppProps = {
+  genres?: { [id: string]: string },
+  selected?: { [id: string]: boolean }
+}
+type AppState = {
+  selected: { [id: string]: boolean }
+}
+
 /**
  * Переключает выбор жанра
- * @param {number} id Id жанра
+ * @param {string} id Id жанра
  * @param {boolean} checked Выбран ли
  */
-export const check = (id, isChecked) => ({ selected }) => ({ selected: { ...selected, [id]: isChecked } })
+export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
+  ({ selected: { ...selected, [id]: isChecked } })
 
 /**
  * Начальное состояние из props
  */
-export const initialState = (_, { selected }) => ({ selected })
+export const initialState = (prevState: AppState, { selected }: AppProps) =>
+  ({ selected })
 
 /**
  * Сохранение выбранных в хранилище
  */
-export const saveToStorage = (selected) => chrome.storage.sync.set({ selected })
+export const saveToStorage = (selected: { [id: string]: boolean }) => {
+  chrome.storage.sync.set({ selected })
+}
 
-export default class App extends Component {
-  componentWillMount () {
+
+export default class App extends Component<AppProps, AppState> {
+  componentWillMount() {
     this.setState(initialState)
   }
-  handleChange = (event) => {
-    const id = event.target.value
-    const isChecked = event.target.checked
+  handleChange = (event: Event) => {
+    const checkbox = event.target as HTMLInputElement;
+    const id = checkbox.value
+    const isChecked = checkbox.checked
     this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
-  render ({ genres }, { selected }) {
+  render({ genres }: AppProps, { selected }: AppState) {
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>

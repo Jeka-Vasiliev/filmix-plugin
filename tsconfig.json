@@ -2,7 +2,9 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "jsx": "react",
+        "jsxFactory": "h"
     },
     "awesomeTypescriptLoaderOptions": {
         "useBabel": true,
