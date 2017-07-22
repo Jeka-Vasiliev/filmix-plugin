@@ -3,9 +3,13 @@ import App from './App'
 import genresJson from './genres.json'
 
 const genres = genresJson as { [id: string]: string };
+const root = document.getElementById('root');
+if (root === null) {
+  throw new Error('Element with id = "root" not found')
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }) => {
-    render(<App genres={ genres } selected= { selected } />, document.getElementById('root'))
+    render(<App genres={genres} selected={selected} />, root)
   })
 })

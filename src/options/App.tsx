@@ -42,6 +42,10 @@ export default class App extends Component<AppProps, AppState> {
     this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
   render({ genres }: AppProps, { selected }: AppState) {
+    if (genres === undefined) {
+      return <p>Произошла ошибка!</p>;
+    }
+
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>

@@ -27,7 +27,7 @@ export function parseUrls (html: string) {
     let url = ''
     for (let j = 0; j < allLinks.length; j++) {
       if (allLinks[j].getAttribute('itemprop') === 'url') {
-        url = allLinks[j].getAttribute('href')
+        url = allLinks[j].getAttribute('href') || ''
         break
       }
     }

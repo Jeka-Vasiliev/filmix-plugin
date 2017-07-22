@@ -4,7 +4,10 @@
         "removeComments": true,
         "moduleResolution": "node",
         "jsx": "react",
-        "jsxFactory": "h"
+        "jsxFactory": "h",
+        "target": "esnext",
+        "allowSyntheticDefaultImports": true,
+        "strict": true
     },
     "awesomeTypescriptLoaderOptions": {
         "useBabel": true,
