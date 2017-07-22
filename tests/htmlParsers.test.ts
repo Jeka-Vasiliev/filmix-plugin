@@ -4,7 +4,11 @@ import { getPagesCount, parseUrls } from '../src/inject/filmixResponseParsers'
 const html = fs.readFileSync('tests/response-example.html.txt', 'utf-8')
 
 test('getPagesCount', () => {
-  expect(getPagesCount(html)).toBe(4316)
+  const expectedCount = 4316
+
+  const result = getPagesCount(html)
+
+  expect(result).toBe(expectedCount)
 })
 
 test('parseFilmixResponse', () => {
@@ -26,5 +30,7 @@ test('parseFilmixResponse', () => {
     'https://filmix.me/tv/25616-nerealnaya-istoriya-2011.html'
   ]
 
-  expect(parseUrls(html)).toEqual(expected)
+  const result = parseUrls(html)
+
+  expect(result).toEqual(expected)
 })
