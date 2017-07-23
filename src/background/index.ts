@@ -1,11 +1,15 @@
-chrome.pageAction.onClicked.addListener(({id}) => {
-  if (id === undefined) throw new Error("");
-  chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }) => {
+import { SelectedGenres, StorageOptions } from '../shared/types'
+
+chrome.pageAction.onClicked.addListener(({ id: typeId }) => {
+  if (typeId === undefined) {
+    throw new Error("No current active tab");
+  }
+  chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }: StorageOptions) => {
     const checked = Object.keys(selected).filter(id => selected[id])
     const code = `var genres = ${JSON.stringify(checked)};`
-      chrome.tabs.executeScript(id, { code }, () => {
-        chrome.tabs.executeScript(id, { file: 'inject.bundle.js' })
-      })
+    chrome.tabs.executeScript(typeId, { code }, () => {
+      chrome.tabs.executeScript(typeId, { file: 'inject.bundle.js' })
+    })
   })
 })
 

@@ -1,6 +1,7 @@
 import { h, render } from 'preact'
 import App from './App'
 import genresJson from './genres.json'
+import { SelectedGenres, StorageOptions } from '../shared/types'
 
 const genres = genresJson as { [id: string]: string };
 const root = document.getElementById('root');
@@ -9,7 +10,7 @@ if (root === null) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }) => {
-    render(<App genres={genres} selected={selected} />, root)
+  chrome.storage.sync.get({ selected: { '2': true } }, ({ selected }: StorageOptions) => {
+    render(<App names={genres} selected={selected} />, root)
   })
 })

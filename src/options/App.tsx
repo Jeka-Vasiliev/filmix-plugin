@@ -1,12 +1,13 @@
 import { h, Component } from 'preact'
 import Genre from './Genre'
+import { SelectedGenres, GenresNames } from '../shared/types'
 
 type AppProps = {
-  genres?: { [id: string]: string },
-  selected?: { [id: string]: boolean }
+  names: GenresNames,
+  selected: SelectedGenres
 }
 type AppState = {
-  selected: { [id: string]: boolean }
+  selected: SelectedGenres
 }
 
 /**
@@ -26,7 +27,7 @@ export const initialState = (prevState: AppState, { selected }: AppProps) =>
 /**
  * Сохранение выбранных в хранилище
  */
-export const saveToStorage = (selected: { [id: string]: boolean }) => {
+export const saveToStorage = (selected: SelectedGenres) => {
   chrome.storage.sync.set({ selected })
 }
 
@@ -41,18 +42,14 @@ export default class App extends Component<AppProps, AppState> {
     const isChecked = checkbox.checked
     this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
-  render({ genres }: AppProps, { selected }: AppState) {
-    if (genres === undefined) {
-      return <p>Произошла ошибка!</p>;
-    }
-
+  render({ names }: AppProps, { selected }: AppState) {
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>
-        {Object.keys(genres).map(id =>
+        {Object.keys(names).map(id =>
           <Genre key={id}
             id={id}
-            text={genres[id]}
+            text={names[id]}
             checked={selected[id]}
             onChange={this.handleChange} />
         )}
