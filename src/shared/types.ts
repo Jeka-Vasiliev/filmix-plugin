@@ -1,7 +1,7 @@
-export type GenresNames = { [id: string]: string }
+export interface GenresNames { [id: string]: string; }
 
-export type SelectedGenres = { [id: string]: boolean }
+export interface SelectedGenres { [id: string]: boolean; }
 
-export type StorageOptions = {
-  selected: SelectedGenres
+export interface StorageOptions {
+  selected: SelectedGenres;
 }

@@ -1,13 +1,13 @@
-import { h, Component } from 'preact'
-import Genre from './Genre'
-import { SelectedGenres, GenresNames } from '../shared/types'
+import { Component, h } from 'preact';
+import { GenresNames, SelectedGenres } from '../shared/types';
+import Genre from './Genre';
 
-type AppProps = {
-  names: GenresNames,
-  selected: SelectedGenres
+interface AppProps {
+  names: GenresNames;
+  selected: SelectedGenres;
 }
-type AppState = {
-  selected: SelectedGenres
+interface AppState {
+  selected: SelectedGenres;
 }
 
 /**
@@ -16,33 +16,32 @@ type AppState = {
  * @param {boolean} checked Выбран ли
  */
 export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
-  ({ selected: { ...selected, [id]: isChecked } })
+  ({ selected: { ...selected, [id]: isChecked } });
 
 /**
  * Начальное состояние из props
  */
 export const initialState = (prevState: AppState, { selected }: AppProps) =>
-  ({ selected })
+  ({ selected });
 
 /**
  * Сохранение выбранных в хранилище
  */
 export const saveToStorage = (selected: SelectedGenres) => {
-  chrome.storage.sync.set({ selected })
-}
-
+  chrome.storage.sync.set({ selected });
+};
 
 export default class App extends Component<AppProps, AppState> {
-  componentWillMount() {
-    this.setState(initialState)
+  public componentWillMount() {
+    this.setState(initialState);
   }
-  handleChange = (event: Event) => {
+  public handleChange = (event: Event) => {
     const checkbox = event.target as HTMLInputElement;
-    const id = checkbox.value
-    const isChecked = checkbox.checked
-    this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
+    const id = checkbox.value;
+    const isChecked = checkbox.checked;
+    this.setState(check(id, isChecked), () => saveToStorage(this.state.selected));
   }
-  render({ names }: AppProps, { selected }: AppState) {
+  public render({ names }: AppProps, { selected }: AppState) {
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>
@@ -51,9 +50,9 @@ export default class App extends Component<AppProps, AppState> {
             id={id}
             text={names[id]}
             checked={selected[id]}
-            onChange={this.handleChange} />
+            onChange={this.handleChange} />,
         )}
       </div>
-    )
+    );
   }
 }
