@@ -34,14 +34,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
-    "eslint": "^4.3.0",
-    "eslint-config-defaults": "^9.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
     "jest": "^20.0.4",
     "rimraf": "^2.6.1",
@@ -52,6 +44,7 @@
     "webpack": "^3.3.0"
   },
   "dependencies": {
+    "@types/webpack": "^3.8.1",
     "preact": "^8.2.1"
   }
 }
