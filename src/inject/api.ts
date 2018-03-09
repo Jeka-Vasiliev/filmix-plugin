@@ -1,30 +1,6 @@
 import { getPagesCount, parseUrls } from './filmixResponseParsers';
 
-export const searchUrl = '/engine/ajax/sphinx_search.php';
-
-/**
- * Возвращает html с результатами поиска
- * @param {number} pageNumber Номер страницы
- * @param {string[]} genreIds Id жанров
- */
-export function getFilmixSearchHtml(pageNumber: number, genreIds: string[]) {
-  const body = new URLSearchParams();
-  body.append('search_start', pageNumber.toString());
-  genreIds.forEach(id => body.append('ganre[]', id));
-
-  const init: RequestInit = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-    body,
-    credentials: 'same-origin',
-  };
-
-  return fetch(searchUrl, init)
-    .then(result => result.text());
-}
+const searchUrl = '/engine/ajax/sphinx_search.php';
 
 export function getPagesCountForGenres(genreIds: string[]) {
   return getFilmixSearchHtml(0, genreIds)
@@ -34,4 +10,26 @@ export function getPagesCountForGenres(genreIds: string[]) {
 export function getUrlsFromPageForGenres(randomPage: number, genreIds: string[]) {
   return getFilmixSearchHtml(randomPage, genreIds)
     .then(html => parseUrls(html));
+}
+
+function getFilmixSearchHtml(pageNumber: number, genreIds: string[]) {
+  const init: RequestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+    body: buildSearchRequestBody(pageNumber, genreIds),
+    credentials: 'same-origin',
+  };
+
+  return fetch(searchUrl, init)
+    .then(result => result.text());
+}
+
+function buildSearchRequestBody(pageNumber: number, genreIds: string[]) {
+  const body = new URLSearchParams();
+  body.append('search_start', pageNumber.toString());
+  genreIds.forEach(id => body.append('ganre[]', id));
+  return body.toString();
 }
