@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const { CheckerPlugin } = require('awesome-typescript-loader')
 
 const devEnv = 'development'
 const prodEnv = 'production'
@@ -20,31 +19,17 @@ module.exports = (outerEnv) => {
     },
     module: {
       rules: [
-        { test: /\.tsx?$/, loader: ['babel-loader', 'awesome-typescript-loader'] }
+        { test: /\.tsx?$/, loader: ['ts-loader'], exclude: /node_modules/ }
       ]
     },
     resolve: {
       extensions: ['.ts', '.tsx']
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env)
-      })
-    ],
-    mode: env
+    mode: env,
   }
 
   if (env === devEnv) {
     config.devtool = 'source-map'
-    config.plugins.push(new CheckerPlugin())
   }
-
-  if (env === prodEnv) {
-    config.plugins.push(new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }))
-  }
-
   return config
 }
