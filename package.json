@@ -1,8 +1,7 @@
 {
   "name": "filmix-plugin",
   "version": "0.0.1",
-  "description": "Plugin for filmix.net",
-  "main": "index.js",
+  "description": "Random worshiper for filmix.me",
   "scripts": {
     "test": "jest",
     "build": "gulp build",
