@@ -19,29 +19,17 @@ module.exports = (outerEnv) => {
     },
     module: {
       rules: [
-        { test: /\.jsx?$/, loader: 'babel-loader' }
+        { test: /\.tsx?$/, loader: ['ts-loader'], exclude: /node_modules/ }
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.ts', '.tsx']
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env)
-      })
-    ]
+    mode: env,
   }
 
   if (env === devEnv) {
     config.devtool = 'source-map'
   }
-
-  if (env === prodEnv) {
-    config.plugins.push(new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }))
-  }
-
   return config
 }

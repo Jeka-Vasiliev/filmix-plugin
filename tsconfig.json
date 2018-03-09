@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "jsx": "react",
+        "jsxFactory": "h",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "target": "es6",
+        "strict": true,
+        "sourceMap": true
+    },
+    "include": [
+      "src/**/*",
+      "typings/**/*"
+    ]
+}

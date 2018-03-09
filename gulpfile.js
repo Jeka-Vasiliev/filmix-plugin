@@ -15,7 +15,7 @@ gulp.task('build-production', (cb) => {
 gulp.task('webpack-build-production', (cb) => {
   const compiler = webpack(webpackConfig('production'))
   compiler.run((err, stats) => {
-    console.log(stats.toString(true))
+    console.log(stats.toString({ colors: true, modules: false }))
     cb(err)
   })
 })
@@ -23,7 +23,7 @@ gulp.task('webpack-build-production', (cb) => {
 gulp.task('webpack-build', (cb) => {
   const compiler = webpack(webpackConfig('development'))
   compiler.run((err, stats) => {
-    console.log(stats.toString(true))
+    console.log(stats.toString({ colors: true, modules: false }))
     cb(err)
   })
 })
@@ -31,7 +31,7 @@ gulp.task('webpack-build', (cb) => {
 gulp.task('webpack-watch', (cb) => {
   const compiler = webpack(webpackConfig('development'))
   compiler.watch({}, (_, stats) => {
-    console.log(stats.toString(true))
+    console.log(stats.toString({ colors: true, modules: false }))
   })
 })
 
