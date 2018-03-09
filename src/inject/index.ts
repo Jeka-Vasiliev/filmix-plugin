@@ -1,6 +1,6 @@
-import gotoRandomFilm from './gotoRandomFilm';
+import gotoRandomFilm from './gotoRandomFilm'
 
 // инжектится из background
-declare const genres: string[];
+declare const genres: string[]
 
-gotoRandomFilm(genres);
+gotoRandomFilm(genres)

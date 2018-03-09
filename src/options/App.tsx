@@ -1,13 +1,13 @@
-import { Component, h } from 'preact';
-import { GenresNames, SelectedGenres } from '../shared/types';
-import Genre from './Genre';
+import { Component, h } from 'preact'
+import { GenresNames, SelectedGenres } from '../shared/types'
+import Genre from './Genre'
 
 interface AppProps {
-  names: GenresNames;
-  selected: SelectedGenres;
+  names: GenresNames
+  selected: SelectedGenres
 }
 interface AppState {
-  selected: SelectedGenres;
+  selected: SelectedGenres
 }
 
 /**
@@ -16,30 +16,30 @@ interface AppState {
  * @param {boolean} checked Выбран ли
  */
 export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
-  ({ selected: { ...selected, [id]: isChecked } });
+  ({ selected: { ...selected, [id]: isChecked } })
 
 /**
  * Начальное состояние из props
  */
 export const initialState = (prevState: AppState, { selected }: AppProps) =>
-  ({ selected });
+  ({ selected })
 
 /**
  * Сохранение выбранных в хранилище
  */
 export const saveToStorage = (selected: SelectedGenres) => {
-  chrome.storage.sync.set({ selected });
-};
+  chrome.storage.sync.set({ selected })
+}
 
 export default class App extends Component<AppProps, AppState> {
   public componentWillMount() {
-    this.setState(initialState);
+    this.setState(initialState)
   }
   public handleChange = (event: Event) => {
-    const checkbox = event.target as HTMLInputElement;
-    const id = checkbox.value;
-    const isChecked = checkbox.checked;
-    this.setState(check(id, isChecked), () => saveToStorage(this.state.selected));
+    const checkbox = event.target as HTMLInputElement
+    const id = checkbox.value
+    const isChecked = checkbox.checked
+    this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
   public render({ names }: AppProps, { selected }: AppState) {
     return (
@@ -53,6 +53,6 @@ export default class App extends Component<AppProps, AppState> {
             onChange={this.handleChange} />,
         )}
       </div>
-    );
+    )
   }
 }

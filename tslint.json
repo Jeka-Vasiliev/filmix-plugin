@@ -14,7 +14,7 @@
         ],
         "semicolon": [
             true,
-            "always"
+            "never"
         ],
         "arrow-parens": [
             true,
