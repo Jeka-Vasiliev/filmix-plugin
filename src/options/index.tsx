@@ -10,7 +10,7 @@ if (root === null) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }: StorageOptions) => {
+  chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }) => {
     render(<App names={genres} selected={selected} />, root);
   });
 });

@@ -4,7 +4,7 @@ chrome.pageAction.onClicked.addListener(({ id: typeId }) => {
   if (typeId === undefined) {
     throw new Error('No current active tab');
   }
-  chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }: StorageOptions) => {
+  chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }) => {
     const checked = Object.keys(selected).filter( id => selected[id]);
     const code = `var genres = ${JSON.stringify(checked)};`;
     chrome.tabs.executeScript(typeId, { code }, () => {
