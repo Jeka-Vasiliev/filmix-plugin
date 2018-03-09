@@ -14,8 +14,12 @@ export function getFilmixSearchHtml(pageNumber: number, genreIds: string[]) {
 
   const init: RequestInit = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
     body,
+    credentials: 'same-origin',
   };
 
   return fetch(searchUrl, init)
