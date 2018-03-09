@@ -1,5 +1,5 @@
 import { h, render } from 'preact'
-import { SelectedGenres, StorageOptions } from '../shared/types'
+
 import App from './App'
 import genresJson from './genres.json'
 

@@ -1,10 +1,9 @@
-import { SelectedGenres, StorageOptions } from '../shared/types'
-
+const defaultSelectedKeys = { selected: { 2: true } }
 chrome.pageAction.onClicked.addListener(({ id: tabId }) => {
   if (tabId === undefined) {
     throw new Error('No current active tab')
   }
-  chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }) => {
+  chrome.storage.sync.get(defaultSelectedKeys, ({ selected }) => {
     const checked = Object.keys(selected).filter( id => selected[id])
     const code = `var genres = ${JSON.stringify(checked)};`
     chrome.tabs.executeScript(tabId, { code }, () => {
