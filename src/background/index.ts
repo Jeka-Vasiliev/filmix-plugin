@@ -1,14 +1,14 @@
 import { SelectedGenres, StorageOptions } from '../shared/types'
 
-chrome.pageAction.onClicked.addListener(({ id: typeId }) => {
-  if (typeId === undefined) {
+chrome.pageAction.onClicked.addListener(({ id: tabId }) => {
+  if (tabId === undefined) {
     throw new Error('No current active tab')
   }
   chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }) => {
     const checked = Object.keys(selected).filter( id => selected[id])
     const code = `var genres = ${JSON.stringify(checked)};`
-    chrome.tabs.executeScript(typeId, { code }, () => {
-      chrome.tabs.executeScript(typeId, { file: 'inject.bundle.js' })
+    chrome.tabs.executeScript(tabId, { code }, () => {
+      chrome.tabs.executeScript(tabId, { file: 'inject.bundle.js' })
     })
   })
 })
