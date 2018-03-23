@@ -1,39 +1,27 @@
 import { Component, h } from 'preact'
+import { genres } from '../genres'
 import { GenresNames, SelectedGenres } from '../shared/types'
+import { saveToStorage } from '../storage'
 import Genre from './Genre'
 
 interface AppProps {
-  names: GenresNames
-  selected: SelectedGenres
+  initialSelectedGenres: number[]
 }
 interface AppState {
-  selected: SelectedGenres
+  genreCheckboxes: {
+    [id: number]: boolean;
+  }
 }
 
-/**
- * Переключает выбор жанра
- * @param {string} id Id жанра
- * @param {boolean} checked Выбран ли
- */
-export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
+export const check = (id: string, isChecked: boolean) => ({ genreCheckboxes }: AppState) =>
   ({ selected: { ...selected, [id]: isChecked } })
-
-/**
- * Начальное состояние из props
- */
-export const initialState = (prevState: AppState, { selected }: AppProps) =>
-  ({ selected })
-
-/**
- * Сохранение выбранных в хранилище
- */
-export const saveToStorage = (selected: SelectedGenres) => {
-  chrome.storage.sync.set({ selected })
+export function enableGenre(id: string) {
+  return ({ selectedGenres }: AppState) => ({ selectedGenres: 123 })
 }
 
 export default class App extends Component<AppProps, AppState> {
   public componentWillMount() {
-    this.setState(initialState)
+    this.setState(initializeState)
   }
   public handleChange = (event: Event) => {
     const checkbox = event.target as HTMLInputElement
@@ -41,18 +29,27 @@ export default class App extends Component<AppProps, AppState> {
     const isChecked = checkbox.checked
     this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
-  public render({ names }: AppProps, { selected }: AppState) {
+  public render(_: AppProps, { genreCheckboxes }: AppState) {
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>
-        {Object.keys(names).map(id =>
+        {Object.keys(genreCheckboxes).map(id =>
           <Genre key={id}
             id={id}
-            text={names[id]}
+            text={genreCheckboxes[id]}
             checked={selected[id]}
             onChange={this.handleChange} />,
         )}
       </div>
     )
+  }
+}
+
+export function initializeState(_: AppState, { initialSelectedGenres }: AppProps): Partial<AppState> {
+  return {
+    genreCheckboxes: Object.keys(genres).reduce<AppState['genreCheckboxes']>((acc, id) => {
+      acc[Number(id)] = false
+      return acc
+    }, {}),
   }
 }

@@ -1,9 +1,8 @@
 import { h, render } from 'preact'
 
+import { genres } from '../genres'
 import App from './App'
-import genresJson from './genres.json'
 
-const genres = genresJson as { [id: string]: string }
 const root = document.getElementById('root')
 if (root === null) {
   throw new Error('Element with id = "root" not found')

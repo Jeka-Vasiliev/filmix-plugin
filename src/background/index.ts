@@ -1,18 +1,17 @@
-const defaultSelectedKeys = { selected: { 2: true } }
-chrome.pageAction.onClicked.addListener(({ id: tabId }) => {
+import { readFromStorage } from '../storage'
+
+chrome.pageAction.onClicked.addListener(async ({ id: tabId }) => {
   if (tabId === undefined) {
     throw new Error('No current active tab')
   }
-  chrome.storage.sync.get(defaultSelectedKeys, ({ selected }) => {
-    const checked = Object.keys(selected).filter( id => selected[id])
-    const code = `var genres = ${JSON.stringify(checked)};`
-    chrome.tabs.executeScript(tabId, { code }, () => {
-      chrome.tabs.executeScript(tabId, { file: 'inject.bundle.js' })
-    })
+  const selectedGenres = await readFromStorage()
+  const code = `var selectedGenres = ${JSON.stringify(selectedGenres)};`
+  chrome.tabs.executeScript(tabId, { code }, () => {
+    chrome.tabs.executeScript(tabId, { file: 'inject.bundle.js' })
   })
 })
 
-chrome.runtime.onMessage.addListener( message => {
+chrome.runtime.onMessage.addListener(message => {
   // tslint:disable-next-line:no-console
   console.log(message)
 })
