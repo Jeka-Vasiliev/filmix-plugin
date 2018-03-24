@@ -1,6 +1,9 @@
 export const defaultGenre = 2
 
-export const genres = {
+export interface Genres {
+  [genreId: number]: string
+}
+export const allAvailableGenres: Genres = {
   1: 'Драмы',
   2: 'Ужасы',
   3: 'Боевики',

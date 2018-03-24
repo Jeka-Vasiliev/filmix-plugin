@@ -1,4 +1,6 @@
 import { Component, h } from 'preact'
+
+import { Genres } from '../genres'
 import { GenresNames, SelectedGenres } from '../shared/types'
 import Genre from './Genre'
 
@@ -55,4 +57,12 @@ export default class App extends Component<AppProps, AppState> {
       </div>
     )
   }
+}
+
+export function initializeState(allGenres: Genres) {
+  return Object.keys(allGenres).reduce((acc, key) => {
+    const genreId = Number(key)
+    acc[genreId] = false
+    return acc
+  }, {} as { [id: number]: boolean })
 }
