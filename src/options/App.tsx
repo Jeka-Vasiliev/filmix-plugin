@@ -59,10 +59,10 @@ export default class App extends Component<AppProps, AppState> {
   }
 }
 
-export function initializeState(allGenres: Genres) {
-  return Object.keys(allGenres).reduce((acc, key) => {
+export function initializeState(allAvailableGenres: Genres, selectedGenres: number[]) {
+  return Object.keys(allAvailableGenres).reduce((acc, key) => {
     const genreId = Number(key)
-    acc[genreId] = false
+    acc[genreId] = selectedGenres.includes(genreId)
     return acc
   }, {} as { [id: number]: boolean })
 }
