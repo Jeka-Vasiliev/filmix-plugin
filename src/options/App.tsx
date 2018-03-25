@@ -12,23 +12,12 @@ interface AppState {
   selected: SelectedGenres
 }
 
-/**
- * Переключает выбор жанра
- * @param {string} id Id жанра
- * @param {boolean} checked Выбран ли
- */
 export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
   ({ selected: { ...selected, [id]: isChecked } })
 
-/**
- * Начальное состояние из props
- */
 export const initialState = (prevState: AppState, { selected }: AppProps) =>
   ({ selected })
 
-/**
- * Сохранение выбранных в хранилище
- */
 export const saveToStorage = (selected: SelectedGenres) => {
   chrome.storage.sync.set({ selected })
 }
