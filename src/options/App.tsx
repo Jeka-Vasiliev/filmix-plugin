@@ -2,10 +2,9 @@ import { Component, h } from 'preact'
 
 import { allAvailableGenres, GenresNames } from '../genres'
 import { SelectedGenres } from '../shared/types'
-import { GenresList } from './GenresList';
+import { GenresList } from './GenresList'
 
 interface AppProps {
-  genreNames: GenresNames
   selected: SelectedGenres
 }
 interface AppState {

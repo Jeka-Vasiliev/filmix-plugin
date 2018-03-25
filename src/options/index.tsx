@@ -1,8 +1,6 @@
 import { h, render } from 'preact'
 
-import { allAvailableGenres } from '../genres'
 import App from './App'
-import genresJson from './genres.json'
 
 const root = document.getElementById('root')
 if (root === null) {
@@ -11,6 +9,6 @@ if (root === null) {
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get({ selected: { 2: true } }, ({ selected }) => {
-    render(<App genreNames={allAvailableGenres} selected={selected} />, root)
+    render(<App selected={selected} />, root)
   })
 })
