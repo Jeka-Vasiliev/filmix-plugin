@@ -1,17 +1,22 @@
 import { h } from 'preact'
+import { allAvailableGenres } from '../genres'
 
 interface GenreProps {
   key: string
-  id: string
-  text: string
+  genreId: number
   checked: boolean
-  onChange: (e: Event) => void
+  onSwitchGenre: (genreId: number) => void
 }
 
-const Genre = ({ id, text, checked = false, onChange }: GenreProps) => (
-  <div>
-    <input type="checkbox" value={id} checked={checked} onChange={onChange} />
+export function Genre({ genreId, checked = false, onSwitchGenre }: GenreProps) {
+  const text = allAvailableGenres[genreId]
+  return <div>
+    <input
+      type="checkbox"
+      value={genreId.toString()}
+      checked={checked}
+      onChange={() => onSwitchGenre(genreId)}
+    />
     {text}
   </div>
-)
-export default Genre
+}

@@ -1,8 +1,8 @@
 import { Component, h } from 'preact'
 
-import { GenresNames } from '../genres'
+import { allAvailableGenres, GenresNames } from '../genres'
 import { SelectedGenres } from '../shared/types'
-import Genre from './Genre'
+import { GenresList } from './GenresList';
 
 interface AppProps {
   genreNames: GenresNames
@@ -11,9 +11,6 @@ interface AppProps {
 interface AppState {
   selected: SelectedGenres
 }
-
-export const check = (id: string, isChecked: boolean) => ({ selected }: AppState) =>
-  ({ selected: { ...selected, [id]: isChecked } })
 
 export const initialState = (prevState: AppState, { selected }: AppProps) =>
   ({ selected })
@@ -26,26 +23,18 @@ export default class App extends Component<AppProps, AppState> {
   public componentWillMount() {
     this.setState(initialState)
   }
-  public handleChange = (event: Event) => {
-    const checkbox = event.target as HTMLInputElement
-    const id = checkbox.value
-    const isChecked = checkbox.checked
-    this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
+  public handleChange = (genreId: number) => {
+    this.setState(switchGenreSelectetion(genreId), () => saveToStorage(this.state.selected))
   }
-  public render({ genreNames }: AppProps, { selected }: AppState) {
-    return (
-      <div>
-        <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>
-        {Object.keys(genreNames).map(id =>
-          <Genre key={id}
-            id={id}
-            text={genreNames[Number(id)]}
-            checked={selected[id]}
-            onChange={this.handleChange} />,
-        )}
-      </div>
-    )
+  public render(_: AppProps, { selected }: AppState) {
+    return <GenresList selected={selected} onSwitchGenre={this.handleChange} />
   }
+}
+
+function switchGenreSelectetion(genreId: number) {
+  return ({ selected }: AppState) => ({
+    selected: { ...selected, [genreId]: !selected[genreId] },
+  })
 }
 
 export function initializeState(allAvailableGenres: GenresNames, selectedGenres: number[]) {
