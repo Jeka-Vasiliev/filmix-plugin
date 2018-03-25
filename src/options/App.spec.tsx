@@ -1,9 +1,9 @@
-import { Genres } from '../genres'
+import { GenresNames } from '../genres'
 import { initializeState } from './App'
 
 describe('initializeState', () => {
     it('should return inital state with all genres', () => {
-        const testGenres: Genres = {
+        const testGenres: GenresNames = {
             1: 'one',
             2: 'two',
             3: 'three',
@@ -19,7 +19,7 @@ describe('initializeState', () => {
     })
 
     it('should return initial state with true for previously selected genres', () => {
-        const testGenres: Genres = {
+        const testGenres: GenresNames = {
             1: 'one',
             2: 'two',
             3: 'three',

@@ -1,11 +1,11 @@
 import { Component, h } from 'preact'
 
-import { Genres } from '../genres'
-import { GenresNames, SelectedGenres } from '../shared/types'
+import { GenresNames } from '../genres'
+import { SelectedGenres } from '../shared/types'
 import Genre from './Genre'
 
 interface AppProps {
-  names: GenresNames
+  genreNames: GenresNames
   selected: SelectedGenres
 }
 interface AppState {
@@ -32,14 +32,14 @@ export default class App extends Component<AppProps, AppState> {
     const isChecked = checkbox.checked
     this.setState(check(id, isChecked), () => saveToStorage(this.state.selected))
   }
-  public render({ names }: AppProps, { selected }: AppState) {
+  public render({ genreNames }: AppProps, { selected }: AppState) {
     return (
       <div>
         <span>Поиск по фильмам, имеющим <b>все</b> выбранные жанры</span>
-        {Object.keys(names).map(id =>
+        {Object.keys(genreNames).map(id =>
           <Genre key={id}
             id={id}
-            text={names[id]}
+            text={genreNames[Number(id)]}
             checked={selected[id]}
             onChange={this.handleChange} />,
         )}
@@ -48,7 +48,7 @@ export default class App extends Component<AppProps, AppState> {
   }
 }
 
-export function initializeState(allAvailableGenres: Genres, selectedGenres: number[]) {
+export function initializeState(allAvailableGenres: GenresNames, selectedGenres: number[]) {
   return Object.keys(allAvailableGenres).reduce((acc, key) => {
     const genreId = Number(key)
     acc[genreId] = selectedGenres.includes(genreId)
