@@ -1,4 +1,4 @@
-export const defaultGenre = 2
+export const defaultGenreId = 2
 
 export interface GenresNames {
   [genreId: number]: string
@@ -41,3 +41,5 @@ export const allAvailableGenres: GenresNames = {
   102: 'Дорамы',
   103: 'Новости',
 }
+
+export const allAvailableGenreIds = Object.keys(allAvailableGenres).map(Number)

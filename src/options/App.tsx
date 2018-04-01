@@ -3,6 +3,7 @@ import { Component, h } from 'preact'
 import { allAvailableGenres, GenresNames } from '../genres'
 import { SelectedGenres } from '../shared/types'
 import { GenresList } from './GenresList'
+import { saveSelectedGenres } from '../storage';
 
 interface AppProps {
   selected: SelectedGenres
@@ -15,7 +16,8 @@ export const initialState = (prevState: AppState, { selected }: AppProps) =>
   ({ selected })
 
 export const saveToStorage = (selected: SelectedGenres) => {
-  chrome.storage.sync.set({ selected })
+  const genreIds = Object.keys(selected).filter(id => selected[id]).map(Number)
+  return saveSelectedGenres(genreIds)
 }
 
 export default class App extends Component<AppProps, AppState> {
