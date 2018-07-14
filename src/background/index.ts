@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(message => {
 const enableOnFilmixRule = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: { hostEquals: 'filmix.me', schemes: ['http', 'https'] },
+      pageUrl: { hostPrefix: 'filmix', schemes: ['http', 'https'] },
     }),
   ],
   actions: [new chrome.declarativeContent.ShowPageAction()],

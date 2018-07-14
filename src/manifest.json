@@ -17,8 +17,8 @@
   },
   "manifest_version": 2,
   "permissions": [
-    "https://filmix.me/*",
-    "http://filmix.me/*",
+    "https://filmix.gold/*",
+    "http://filmix.gold/*",
     "declarativeContent",
     "tabs",
     "storage",

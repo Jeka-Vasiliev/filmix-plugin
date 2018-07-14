@@ -4,8 +4,8 @@
   "description": "Random worshiper for filmix.me",
   "scripts": {
     "test": "jest",
-    "build": "gulp build",
-    "build-prod": "gulp build-production",
+    "build": "webpack --mode=development",
+    "build-prod": "webpack --mode=production",
     "watch": "gulp webpack-watch"
   },
   "jest": {
@@ -25,6 +25,8 @@
     "@types/chrome": "^0.0.60",
     "@types/jest": "^22.2.0",
     "@types/node": "^9.4.7",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
     "gulp": "^3.9.1",
     "jest": "^22.4.2",
     "rimraf": "^2.6.1",
@@ -33,7 +35,8 @@
     "ts-loader": "^4.0.1",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^3.0.8"
   },
   "dependencies": {
     "preact": "^8.2.1"
