@@ -3,7 +3,10 @@ import * as CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as path from 'path'
 import { Configuration } from 'webpack'
 
-const config: Configuration = {
+interface Env { [key: string]: string }
+interface Argv { mode: Configuration['mode'] }
+
+export default (_: Env, { mode }: Argv): Configuration => ({
   entry: {
     background: path.resolve('./src/background'),
     inject: path.resolve('./src/inject'),
@@ -25,6 +28,6 @@ const config: Configuration = {
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([{ from: 'src/manifest.json' }, { from: 'src/options.html' }]),
   ],
-}
-
-export default config
+  mode,
+  devtool: mode === 'development' ? 'source-map' : false,
+})
