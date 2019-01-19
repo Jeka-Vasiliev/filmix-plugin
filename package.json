@@ -1,7 +1,7 @@
 {
-  "name": "filmix-plugin",
+  "name": "filmix-random-worshiper",
   "version": "0.0.1",
-  "description": "Random worshiper for filmix.me",
+  "description": "Random worshiper for filmix.site",
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=development",
@@ -20,6 +20,7 @@
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
     "@types/webpack": "^4.4.23",
+    "@types/zip-webpack-plugin": "^3.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^1.0.0",
@@ -31,7 +32,8 @@
     "tslint": "^5.12.1",
     "typescript": "^3.2.4",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "zip-webpack-plugin": "^3.0.0"
   },
   "dependencies": {
     "preact": "^8.4.2"

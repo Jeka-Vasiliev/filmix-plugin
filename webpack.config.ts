@@ -2,6 +2,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import path from 'path'
 import { Configuration } from 'webpack'
+import ZipPlugin from 'zip-webpack-plugin'
 
 interface Env { [key: string]: string }
 interface Argv { mode: Configuration['mode'] }
@@ -27,6 +28,7 @@ export default (_: Env, { mode }: Argv): Configuration => ({
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([{ from: 'src/manifest.json' }, { from: 'src/options.html' }]),
+    ...mode === 'production' ? [new ZipPlugin({filename: 'filmix-random-worshipper'})] : [],
   ],
   mode,
   devtool: mode === 'development' ? 'source-map' : false,
