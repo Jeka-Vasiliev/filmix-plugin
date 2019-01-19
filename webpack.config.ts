@@ -1,6 +1,6 @@
-import * as CleanWebpackPlugin from 'clean-webpack-plugin'
-import * as CopyWebpackPlugin from 'copy-webpack-plugin'
-import * as path from 'path'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import path from 'path'
 import { Configuration } from 'webpack'
 
 interface Env { [key: string]: string }
