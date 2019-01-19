@@ -1,10 +1,20 @@
 {
-	"presets": [
-		"@babel/env",
-		"@babel/typescript",
-		"@babel/react"
+    "presets": [
+        "@babel/env",
+        [
+            "@babel/typescript",
+            {
+                "jsxPragma": "h"
+            }
+        ],
+        [
+            "@babel/react",
+            {
+                "pragma": "h"
+            }
+        ]
     ],
     "plugins": [
-		"transform-class-properties"
-	]
+        "transform-class-properties"
+    ]
 }
