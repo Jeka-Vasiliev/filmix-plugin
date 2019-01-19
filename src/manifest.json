@@ -19,6 +19,7 @@
   "permissions": [
     "https://filmix.gold/*",
     "http://filmix.gold/*",
+    "https://filmix.site/*",
     "declarativeContent",
     "tabs",
     "storage",
