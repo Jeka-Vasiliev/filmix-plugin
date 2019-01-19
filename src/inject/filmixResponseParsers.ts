@@ -7,6 +7,7 @@ export function getPagesCount(html: string) {
   const rootNode = document.createElement('div')
   rootNode.innerHTML = html
   const navigationBar = rootNode.getElementsByClassName('navigation').item(0)
+  if (!navigationBar) { throw new Error('Element "navigation" not found!') }
   const clickableSpans = navigationBar.getElementsByClassName('click')
   // предположение, что последняя ссылка ведет на последнюю страницу
   const lastSpan = clickableSpans[clickableSpans.length - 1]

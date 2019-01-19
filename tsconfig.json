@@ -1,14 +1,9 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
         "moduleResolution": "node",
         "jsx": "react",
         "jsxFactory": "h",
-        "lib": [
-            "esnext",
-            "dom"
-        ],
-        "target": "es6",
+        "target": "esnext",
         "strict": true,
         "sourceMap": true
     },
