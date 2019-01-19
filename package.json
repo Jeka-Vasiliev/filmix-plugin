@@ -5,29 +5,23 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=development",
-    "build-prod": "webpack --mode=production",
-    "watch": "webpack --watch --mode=development"
-  },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
+    "build-prod": "tsc --noEmit &&webpack --mode=production"
   },
   "author": "jeka",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@types/chrome": "^0.0.77",
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/copy-webpack-plugin": "^4.4.2",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
     "@types/webpack": "^4.4.23",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "jest": "^23.6.0",

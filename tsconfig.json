@@ -5,10 +5,8 @@
         "jsxFactory": "h",
         "target": "esnext",
         "strict": true,
-        "sourceMap": true
-    },
-    "include": [
-      "src/**/*",
-      "typings/**/*"
-    ]
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    }
 }

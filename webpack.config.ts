@@ -18,7 +18,7 @@ export default (_: Env, { mode }: Argv): Configuration => ({
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: ['ts-loader'], exclude: /node_modules/ },
+      { test: /\.tsx?$/, loader: ['babel-loader'], exclude: /node_modules/ },
     ],
   },
   resolve: {
