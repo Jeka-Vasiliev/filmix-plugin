@@ -1,7 +1,7 @@
 {
   "name": "Filmix random worshipper",
   "description": "",
-  "version": "0.1",
+  "version": "0.0.2",
   "background": {
     "scripts": [
       "background.bundle.js"
