@@ -17,7 +17,7 @@
   },
   "manifest_version": 2,
   "permissions": [
-    "https://filmix.site/*",
+    "https://*/*",
     "declarativeContent",
     "tabs",
     "storage",
