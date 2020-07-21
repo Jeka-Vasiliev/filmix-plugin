@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "jsx": "react",
-        "jsxFactory": "h",
-        "target": "esnext",
-        "strict": true,
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true
-    }
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"jsx": "react",
+		"jsxFactory": "h",
+		"lib": ["ES2019", "DOM", "DOM.Iterable"],
+		"target": "ES2019",
+		"strict": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true
+	}
 }

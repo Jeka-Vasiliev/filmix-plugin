@@ -35,10 +35,12 @@ export default (_: Env, { mode }: Argv): Configuration => ({
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
-		new CopyWebpackPlugin([
-			{ from: 'src/manifest.json' },
-			{ from: 'src/options.html' },
-		]),
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: 'src/manifest.json' },
+				{ from: 'src/options.html' },
+			],
+		}),
 		...(mode === 'production'
 			? [new ZipPlugin({ filename: 'filmix-random-worshipper' })]
 			: []),
