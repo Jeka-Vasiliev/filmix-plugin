@@ -25,7 +25,7 @@ export default (_: Env, { mode }: Argv): Configuration => ({
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: ['babel-loader'],
+				use: ['babel-loader'],
 				exclude: /node_modules/,
 			},
 		],
